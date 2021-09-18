@@ -1,0 +1,79 @@
+get:
+  tags:
+    - Task
+  summary: Get list of tasks
+  operationId: getTasks
+  parameters:
+    - name: username
+      in: path
+      schema:
+        type: string
+        description: Search by user
+        pattern: '[0-9a-zA-Z]{6,24}'
+        example: notabug
+      required: false
+
+    - name: groupId
+      in: path
+      schema:
+        type: string
+        description: Search by group
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb7
+      required: false
+
+    - name: done
+      in: path
+      schema:
+        type: boolean
+        description: Describes whether the task is completed or not
+      required: false
+  responses:
+    '200':
+      description: Tasks found
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../common.yml#/components/schemas/Task
+          examples:
+            default:
+              value: [
+                {
+                  id: 61435636c398c785ab8b2cb8,
+                  groupId: 61435636c398c785ab8b2cb7,
+                  description: Do the dishes,
+                  assignedTo: notabug,
+                  effort: 5,
+                  done: false,
+                  dueDate: 2021-12-12
+                }
+              ]
+
+
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: User not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }

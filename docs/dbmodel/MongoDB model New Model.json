@@ -1,0 +1,392 @@
+{
+    "modelName": "New Model",
+    "collections": [
+        {
+            "collectionName": "Task",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "a77acb00-16ef-11ec-9a20-7de60dfd67e5",
+                    "primaryKey": true,
+                    "required": true
+                },
+                {
+                    "name": "grouId",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "e6bddc80-16ef-11ec-9a20-7de60dfd67e5",
+                    "primaryKey": false,
+                    "required": true,
+                    "foreignCollection": "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                    "foreignField": [
+                        "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                        "842ee270-16f0-11ec-9a20-7de60dfd67e5"
+                    ],
+                    "relationshipType": "Foreign Key",
+                    "parentRelationship": "49707840-16fc-11ec-9a20-7de60dfd67e5"
+                },
+                {
+                    "name": "description",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "c12401c0-16ef-11ec-9a20-7de60dfd67e5",
+                    "required": true
+                },
+                {
+                    "name": "assignedTo",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "f07ab090-16ef-11ec-9a20-7de60dfd67e5",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "foreignCollection": "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+                    "foreignField": [
+                        "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+                        "8ff4f400-16f0-11ec-9a20-7de60dfd67e5"
+                    ],
+                    "relationshipType": "Foreign Key",
+                    "parentRelationship": "4e404fd0-16fc-11ec-9a20-7de60dfd67e5"
+                },
+                {
+                    "name": "averageEffort",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "numeric",
+                    "GUID": "0443d840-16f0-11ec-9a20-7de60dfd67e5",
+                    "required": true
+                },
+                {
+                    "name": "done",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "boolean",
+                    "GUID": "ba002810-16ef-11ec-9a20-7de60dfd67e5",
+                    "required": true
+                },
+                {
+                    "name": "dueDate",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "date",
+                    "primaryKey": false,
+                    "GUID": "55256940-16f0-11ec-9a20-7de60dfd67e5",
+                    "required": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "b1322f90-16e9-11ec-9a20-7de60dfd67e5"
+            },
+            "isActivated": true,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5"
+        },
+        {
+            "collectionName": "Group",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "842ee270-16f0-11ec-9a20-7de60dfd67e5",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "childRelationships": [
+                        "43b8ffd0-16fc-11ec-9a20-7de60dfd67e5",
+                        "49707840-16fc-11ec-9a20-7de60dfd67e5"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "38fb4ca0-16f3-11ec-9a20-7de60dfd67e5",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "description",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "3db10c80-16f3-11ec-9a20-7de60dfd67e5",
+                    "pattern": "{0, 400}"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "088b8980-16ef-11ec-9a20-7de60dfd67e5"
+            },
+            "isActivated": true,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "088a02e0-16ef-11ec-9a20-7de60dfd67e5"
+        },
+        {
+            "collectionName": "User",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "username",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "8ff4f400-16f0-11ec-9a20-7de60dfd67e5",
+                    "required": true,
+                    "primaryKey": true,
+                    "childRelationships": [
+                        "4e404fd0-16fc-11ec-9a20-7de60dfd67e5"
+                    ]
+                },
+                {
+                    "name": "groupId",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "b86d0f80-16f0-11ec-9a20-7de60dfd67e5",
+                    "required": false,
+                    "foreignCollection": "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                    "foreignField": [
+                        "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                        "842ee270-16f0-11ec-9a20-7de60dfd67e5"
+                    ],
+                    "relationshipType": "Foreign Key",
+                    "parentRelationship": "43b8ffd0-16fc-11ec-9a20-7de60dfd67e5"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "0f7f7990-16ef-11ec-9a20-7de60dfd67e5"
+            },
+            "isActivated": true,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5"
+        }
+    ],
+    "buckets": [],
+    "views": [],
+    "relationships": [
+        {
+            "name": "fk Group. to User.",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                    "842ee270-16f0-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+                    "b86d0f80-16f0-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "childCardinality": "1",
+            "GUID": "43b8ffd0-16fc-11ec-9a20-7de60dfd67e5",
+            "parentCollection": "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+            "childCollection": "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5"
+        },
+        {
+            "name": "fk Group. to Task.",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                    "842ee270-16f0-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5",
+                    "e6bddc80-16ef-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "childCardinality": "1",
+            "GUID": "49707840-16fc-11ec-9a20-7de60dfd67e5",
+            "parentCollection": "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+            "childCollection": "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5"
+        },
+        {
+            "name": "fk User. to Task.",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+                    "8ff4f400-16f0-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5",
+                    "f07ab090-16ef-11ec-9a20-7de60dfd67e5"
+                ]
+            ],
+            "childCardinality": "1",
+            "GUID": "4e404fd0-16fc-11ec-9a20-7de60dfd67e5",
+            "parentCollection": "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+            "childCollection": "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5"
+        }
+    ],
+    "users": [],
+    "diagramViews": [],
+    "idToNameHashTable": {
+        "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5": "Task",
+        "088a02e0-16ef-11ec-9a20-7de60dfd67e5": "Group",
+        "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5": "User",
+        "a77acb00-16ef-11ec-9a20-7de60dfd67e5": "id",
+        "f07ab090-16ef-11ec-9a20-7de60dfd67e5": "assignedTo",
+        "e6bddc80-16ef-11ec-9a20-7de60dfd67e5": "grouId",
+        "c12401c0-16ef-11ec-9a20-7de60dfd67e5": "description",
+        "ba002810-16ef-11ec-9a20-7de60dfd67e5": "done",
+        "0443d840-16f0-11ec-9a20-7de60dfd67e5": "averageEffort",
+        "55256940-16f0-11ec-9a20-7de60dfd67e5": "dueDate",
+        "842ee270-16f0-11ec-9a20-7de60dfd67e5": "id",
+        "8ff4f400-16f0-11ec-9a20-7de60dfd67e5": "username",
+        "b86d0f80-16f0-11ec-9a20-7de60dfd67e5": "groupId",
+        "38fb4ca0-16f3-11ec-9a20-7de60dfd67e5": "name",
+        "3db10c80-16f3-11ec-9a20-7de60dfd67e5": "description",
+        "43b8ffd0-16fc-11ec-9a20-7de60dfd67e5": "fk Group. to User.",
+        "49707840-16fc-11ec-9a20-7de60dfd67e5": "fk Group. to Task.",
+        "4e404fd0-16fc-11ec-9a20-7de60dfd67e5": "fk User. to Task."
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [],
+        "GUID": "ae31e7e1-16e9-11ec-9a20-7de60dfd67e5"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "ae31e7e2-16e9-11ec-9a20-7de60dfd67e5"
+    },
+    "sources": [],
+    "decorativeSymbols": [],
+    "dbVersion": "v4.4",
+    "dbVendor": "MongoDB",
+    "hideModelViews": true,
+    "appTarget": "MONGODB",
+    "creationTS": "2021-09-16T12:29:04.734Z",
+    "GUID": "ae31e7e0-16e9-11ec-9a20-7de60dfd67e5",
+    "isLineageEnabled": false,
+    "lastModifTS": "2021-09-16T18:56:31.738Z",
+    "persistenceSchemaVersion": "5",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginEngineVersion": "1.0.0"
+    },
+    "applicationInformation": {
+        "version": "5.1.8"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "b12d9bb0-16e9-11ec-9a20-7de60dfd67e5",
+                        "x": 205,
+                        "y": 249,
+                        "width": 228,
+                        "height": 159,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "088a02e0-16ef-11ec-9a20-7de60dfd67e5",
+                        "x": 387,
+                        "y": 42,
+                        "width": 184,
+                        "height": 87,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "0f7e1a00-16ef-11ec-9a20-7de60dfd67e5",
+                        "x": 40,
+                        "y": 51,
+                        "width": 200,
+                        "height": 69,
+                        "color": {}
+                    }
+                ],
+                "buckets": [],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false,
+                "graphView": {
+                    "erd": [],
+                    "buckets": [],
+                    "decorativeSymbols": [],
+                    "hideRelationshipName": false,
+                    "showPropertiesBoxes": false,
+                    "nameAlongTheLine": false,
+                    "forceLayout": true,
+                    "defaultLinkLength": 300
+                },
+                "diagramViews": [],
+                "decorativeSymbols": [],
+                "nestedCollectionsLayout": "horizontal",
+                "options": []
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "details": true,
+            "hideErdDetails": false,
+            "shouldDistributeCollections": false,
+            "dndHandles": true
+        }
+    }
+}

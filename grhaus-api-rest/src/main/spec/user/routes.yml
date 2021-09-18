@@ -1,0 +1,113 @@
+post:
+  tags:
+    - Task
+  description: Creates User
+  operationId: createUser
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: components.yml#/components/schemas/UserIn
+  responses:
+    '201':
+      description: User created successfully
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/UserOut
+          examples:
+            default:
+              value: {
+                username: notabug,
+                group: null,
+                tasksAssigned: null
+              }
+
+    '400':
+      description: Username already taken
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Username already taken
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }
+
+put:
+  tags:
+    - Task
+  description: Updates User
+  operationId: updateUser
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: components.yml#/components/schemas/UserIn
+  responses:
+    '200':
+      description: User updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/UserOut
+          examples:
+            default:
+              value: {
+                username: notabug,
+                group: {
+                  id: 61435636c398c785ab8b2cb6,
+                  name: home,
+                  description: homedescriptiontoolargeomg
+                },
+                tasksAssigned: [
+                  {
+                    description: Walk the dog,
+                    assignedTo: notabug,
+                    effort: 5,
+                    done: false,
+                    dueDate: 2021-12-12
+                  }
+                ]
+              }
+
+    '400':
+      description: User not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: User not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }

@@ -1,0 +1,173 @@
+get:
+  tags:
+    - Group
+  description: gets a group by its id
+  operationId: getGroup
+  parameters:
+    - name: id
+      in: path
+      description: Group identifier
+      required: true
+      schema:
+        type: string
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb8
+  responses:
+    '200':
+      description: returns the group
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/GroupOut
+          examples:
+            default:
+              value: {
+                id: 61435636c398c785ab8b2cb7,
+                name: Home omh horn whole hol hors,
+                description: Our house in the middle of the street,
+                members: [
+                  {
+                    username: notabug
+                  }
+                ],
+                tasks: [
+                  {
+                    id: 61435636c398c785ab8b2cb8,
+                    groupId: 61435636c398c785ab8b2cb7,
+                    description: Do the dishes,
+                    assignedTo: notabug,
+                    effort: 5,
+                    done: false,
+                    dueDate: 2021-12-12
+                  }
+                ]
+              }
+    '400':
+      description: Group not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Group not found
+              }
+    '500':
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: G001,
+                description: Internal error please contact the administrator
+              }
+
+
+put:
+  tags:
+    - Group
+  description: Updates a group
+  operationId: updateGroup
+  parameters:
+    - name: id
+      in: path
+      description: Group identifier
+      required: true
+      schema:
+        type: string
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb8
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: components.yml#/components/schemas/GroupIn
+  responses:
+
+    '200':
+      description: Group updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/GroupOut
+          examples:
+            default:
+              value: {
+                id: 61435636c398c785ab8b2cb7,
+                name: Home omh horn whole hol horseman,
+                description: Our house in the middle of the house,
+                members: null,
+                tasks: null
+              }
+
+    '400':
+      description: Group not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Group not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }
+
+delete:
+  tags:
+    - Group
+  description: Deletes group by id
+  operationId: deleteGroup
+  parameters:
+    - name: id
+      in: path
+      description: Group identifier
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Group updated successfully
+    '400':
+      description: Group not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Group not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }

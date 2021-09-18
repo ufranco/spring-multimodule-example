@@ -1,0 +1,52 @@
+post:
+  tags:
+    - Group
+  description: Creates a group
+  operationId: createGroup
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: components.yml#/components/schemas/GroupIn
+    responses:
+      '201':
+        description: Group created successfully
+        content:
+          application/json:
+            schema:
+              $ref: components.yml#/components/schemas/GroupOut
+            examples:
+              default:
+                value: {
+                  id: 61435636c398c785ab8b2cb7,
+                  name: Home omh horn whole hol horseman,
+                  description: Our house in the middle of the house,
+                  members: null,
+                  tasks: null
+                }
+
+      '400':
+        description: Group not found
+        content:
+          application/json:
+            schema:
+              $ref: ../common.yml#/components/schemas/ErrorOut
+            examples:
+              default:
+                value: {
+                  code: F0400,
+                  description: Group not found
+                }
+
+      '500':
+        description: Generic error
+        content:
+          application/json:
+            schema:
+              $ref: ../common.yml#/components/schemas/ErrorOut
+            examples:
+              default:
+                value: {
+                  code: F0400,
+                  description: Internal error, please contact the administrator
+                }

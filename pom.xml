@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.4</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>com.grehab</groupId>
+	<artifactId>grhaus</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+
+	<name>grhaus</name>
+	<description>GRehab Tasking API</description>
+	<url/>
+	<inceptionYear>2021</inceptionYear>
+	<organization>
+		<name>GRHaus</name>
+	</organization>
+	<licenses/>
+
+	<developers>
+		<developer>
+			<id>ufranco</id>
+			<name>Ulises Javier Franco</name>
+			<roles>
+				<role>architect</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>grhaus-domain</module>
+		<module>grhaus-api-rest</module>
+		<module>grhaus-use-cases</module>
+		<module>grhaus-infrastructure</module>
+		<module>grhaus-boot</module>
+	</modules>
+
+	<properties>
+		<java.version>11</java.version>
+		<mapstruct.version>1.4.2.Final</mapstruct.version>
+		<assertj.version>3.9.0</assertj.version>
+		<swagger-ui.version>3.0.0</swagger-ui.version>
+		<testcontainers.version>1.16.0</testcontainers.version>
+		<spotbugs-plugin.version>4.3.0</spotbugs-plugin.version>
+		<sortpom-plugin.version>3.0.0</sortpom-plugin.version>
+		<release-plugin.versiun>3.0.0-M4</release-plugin.versiun>
+		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+		<checkstyle-plugin.version>9.0</checkstyle-plugin.version>
+		<source-plugin.version>3.2.1</source-plugin.version>
+		<project-report.version>3.1.2</project-report.version>
+		<jar-plugin.version>3.2.0</jar-plugin.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>grhaus-domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>grhaus-api-rest</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>grhaus-use-cases</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>grhaus-infrastructure</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>grhaus-boot</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.spotbugs</groupId>
+					<artifactId>spotbugs-maven-plugin</artifactId>
+					<version>${spotbugs-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.github.spotbugs</groupId>
+							<artifactId>spotbugs</artifactId>
+							<version>${spotbugs-plugin.version}</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<excludeFilterFile>${project.parent.relativePath}/src/main/config/spotbugs-exclude-filters.xml</excludeFilterFile>
+						<includeTests>true</includeTests>
+						<onlyAnalyze>${project.groupId}.</onlyAnalyze>
+						<plugins>
+							<plugin>
+								<groupId>com.h3xstream.findsecbugs</groupId>
+								<artifactId>findsecbugs-plugin</artifactId>
+								<version>LATEST</version>
+							</plugin>
+						</plugins>
+					</configuration>
+					<executions>
+						<execution>
+							<id>quality-metric-spotbugs</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>com.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${maven-checkstyle-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>${checkstyle-plugin.version}</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<configLocation>${project.parent.relativePath}/src/main/config/checkstyle-java-google-style.xml</configLocation>
+						<supressionsLocation>${project.parent.relativePath}/src/main/config/checkstyle-supressions.xml</supressionsLocation>
+						<failOnViolation>true</failOnViolation>
+						<includeTestSourceDirectory>true</includeTestSourceDirectory>
+						<resourceIncludes>**/*.json, **/*.properties, **/*.xml, **/*.yaml, **/*.yml</resourceIncludes>
+						<sourceDirectories>
+							<sourceDirectory>src/main/java</sourceDirectory>
+						</sourceDirectories>
+						<testSourceDirectories>
+							<testSourceDirectory>src/test/java</testSourceDirectory>
+						</testSourceDirectories>
+					</configuration>
+					<executions>
+						<execution>
+							<id>quality-metric-checkstyle</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${jar-plugin.version}</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Implementation-Title>${project.name}</Implementation-Title>
+								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+							</manifestEntries>
+							<manifestSections>
+								<manifestSection>
+									<name>${project.name}</name>
+									<manifestEntries>
+										<Version>${project.version}</Version>
+									</manifestEntries>
+								</manifestSection>
+							</manifestSections>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${release-plugin.versiun}</version>
+					<configuration>
+						<tagNameFormat>@{project.version}</tagNameFormat>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<configuration>
+						<generateSitemap>true</generateSitemap>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${source-plugin.version}</version>
+					<configuration>
+						<attach>false</attach>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>com.github.ekryd.sortpom</groupId>
+				<artifactId>sortpom-maven-plugin</artifactId>
+				<version>${sortpom-plugin.version}</version>
+				<configuration>
+					<sortOrderFile>${project.basedir}/${project.parent.relativePath}/src/main/config/pom-code-convention.xml</sortOrderFile>
+					<keepBlankLines>true</keepBlankLines>
+					<nrOfIndentSpace>2</nrOfIndentSpace>
+					<expandEmptyElements>false</expandEmptyElements>
+					<createBackupFile>false</createBackupFile>
+					<sortPlugins>groupId,artifactId</sortPlugins>
+					<verifyFail>stop</verifyFail>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sort-pom-files</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.6.3,4]</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>[11,18)</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${project-report.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>ci-management</report>
+							<report>dependency-info</report>
+							<report>distribution-management</report>
+							<report>index</report>
+							<report>issue-management</report>
+							<report>mailing-lists</report>
+							<report>modules</report>
+							<report>plugins</report>
+							<report>scm</report>
+							<report>summary</report>
+							<report>team</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

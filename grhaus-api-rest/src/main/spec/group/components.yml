@@ -1,0 +1,38 @@
+components:
+  schemas:
+
+    GroupIn:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: '[\w\s&]{6,50}'
+          example: HOUSE OF HOUSES
+        description:
+          type: string
+          pattern: '[\w\s,.]{0,300}'
+          example: This is the house of houses, do your chores
+
+    GroupOut:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+        name:
+          type: string
+          pattern: '[\w\s&]{6,50}'
+          example: HOUSE OF HOUSES
+        description:
+          type: string
+          pattern: '[\w\s,.]{0,300}'
+          example: This is the house of houses, do your chores
+        members:
+          type: array
+          items:
+            $ref: ../common.yml#/components/schemas/User
+        tasks:
+          type: array
+          items:
+            $ref: ../common.yml#/components/schemas/Task

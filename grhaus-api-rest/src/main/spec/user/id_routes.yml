@@ -1,0 +1,106 @@
+get:
+  tags:
+    - User
+  description: gets a User by its id
+  operationId: getUser
+  parameters:
+    - name: id
+      in: path
+      description: User identifier
+      schema:
+        type: string
+        pattern: '[0-9a-zA-Z]{6,24}'
+        example: notabug
+      required: true
+  responses:
+    '200':
+      description: returns the task
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/UserOut
+          examples:
+            default:
+              value: {
+                username: notabug,
+                group: {
+                  id: 61435636c398c785ab8b2cb6,
+                  name: home,
+                  description: homedescriptiontoolargeomg
+                },
+                tasksAssigned: [
+                  {
+                    description: Walk the dog,
+                    assignedTo: notabug,
+                    effort: 5,
+                    done: false,
+                    dueDate: 2021-12-12
+                  }
+                ]
+              }
+    '400':
+      description: User not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: User not found
+              }
+    '500':
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: G001,
+                description: Internal error please contact the administrator
+              }
+
+delete:
+  tags:
+    - User
+  description: deletes a User by its id
+  operationId: deleteUser
+  parameters:
+    - name: id
+      in: path
+      description: User identifier
+      schema:
+        type: string
+        pattern: '[0-9a-zA-Z]{6,24}'
+        example: notabug
+      required: true
+  responses:
+    '204':
+      description: User deleted successfully
+    '400':
+      description: User not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: User not found
+              }
+    '500':
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: G001,
+                description: Internal error please contact the administrator
+              }

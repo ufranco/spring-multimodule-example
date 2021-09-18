@@ -1,0 +1,32 @@
+components:
+  schemas:
+    UserIn:
+      type: object
+      required:
+        - username
+      properties:
+        username:
+          type: string
+          description: User's unique identifier
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+        groupId:
+          type: string
+          description: Group's unique identifier user is going to be added
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+
+    UserOut:
+      type: object
+      properties:
+        username:
+          type: string
+          description: User's unique identifier
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+        group:
+          $ref: ../common.yml#/components/schemas/Group
+        tasksAssigned:
+          type: array
+          items:
+            $ref: ../common.yml#/components/schemas/Task

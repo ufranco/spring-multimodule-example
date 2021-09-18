@@ -1,0 +1,172 @@
+get:
+  tags:
+    - Task
+  description: gets a task by its id
+  operationId: getTask
+  parameters:
+    - name: id
+      in: path
+      description: Task identifier
+      schema:
+        type: string
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb8
+      required: true
+  responses:
+    '200':
+      description: returns the task
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/TaskOut
+          examples:
+            default:
+              value: {
+                id: 61435636c398c785ab8b2cb7,
+                description: Walk the dog,
+                group: {
+                  id: 61435636c398c785ab8b2cb6,
+                  name: home,
+                  description: homedescriptiontoolargeomg
+                },
+                assignedTo: notabug,
+                effort: 5,
+                done: false,
+                dueDate: 2021-12-12
+              }
+    '400':
+      description: Task not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Task not found
+              }
+    '500':
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: G001,
+                description: Internal error please contact the administrator
+              }
+
+put:
+  tags:
+    - Task
+  description: Updates a Task
+  operationId: updateTask
+  parameters:
+    - name: id
+      in: path
+      description: Task identifier
+      schema:
+        type: string
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb8
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: components.yml#/components/schemas/TaskIn
+  responses:
+    '200':
+      description: Task updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: components.yml#/components/schemas/TaskOut
+          examples:
+            default:
+              value: {
+                id: 61435636c398c785ab8b2cb7,
+                description: Walk the dog,
+                group: {
+                  id: 61435636c398c785ab8b2cb6,
+                  name: home,
+                  description: homedescriptiontoolargeomg
+                },
+                assignedTo: notabug,
+                effort: 5,
+                done: false,
+                dueDate: 2021-12-12
+              }
+
+    '400':
+      description: Task not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Task not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error, please contact the administrator
+              }
+
+delete:
+  tags:
+    - Task
+  description: Deletes Task by id
+  operationId: deleteTask
+  parameters:
+    - name: id
+      in: path
+      description: Task identifier
+      schema:
+        type: string
+        pattern: '[0-9a-fA-F]{24}'
+        example: 61435636c398c785ab8b2cb8
+      required: true
+  responses:
+    '204':
+      description: Task deleted successfully
+
+    '400':
+      description: Task not found
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Task not found
+              }
+
+    '500':
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: ../common.yml#/components/schemas/ErrorOut
+          examples:
+            default:
+              value: {
+                code: F0400,
+                description: Internal error please contact the administrator
+              }

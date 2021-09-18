@@ -1,0 +1,76 @@
+components:
+  schemas:
+
+    User:
+      description: Lighweight User object
+      type: object
+      properties:
+        username:
+          description: User's unique identifier
+          type: string
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+
+    Group:
+      description: Lighweight Group object
+      type: object
+      properties:
+        id:
+          type: string
+          description: Group's unique identifier
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+        name:
+          description: Group's name
+          type: string
+          pattern: '[\w\s&]{6,50}'
+          example: HOUSE OF HOUSES
+        description:
+          type: string
+          pattern: '[\w\s.,]{0, 300}'
+          example: This is the house of houses, do your chores
+
+    Task:
+      description: Lighweight Task object
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task's unique identifier
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+        description:
+          type: string
+          pattern: '[\w\s]{0,50}'
+          example: Walk the dog
+        assignedTo:
+          type: string
+          description: Actual responsable for task completion
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+        effort:
+          type: integer
+          description: Defines the effort needed for the task
+          format: int32
+          minimum: 1
+          maximum: 10
+        done:
+          type: boolean
+          description: Defines if the task is done
+          default: false
+        dueDate:
+          type: string
+          description: Time the task is schedule to be done
+          format: date
+          example: 2021-12-12
+
+    ErrorOut:
+      type: object
+      properties:
+        code:
+          description: Business rule of the failure
+          type: string
+          example: G001
+        description:
+          type: string
+          example: Generic Error! Please contact the administrator.

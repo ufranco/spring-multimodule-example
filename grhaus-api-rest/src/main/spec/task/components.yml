@@ -1,0 +1,106 @@
+components:
+  schemas:
+
+    TaskIn:
+      type: object
+      required:
+        - description
+        - groupId
+        - assignedTo
+        - averageEffort
+        - dueDate
+      properties:
+        description:
+          type: string
+          pattern: '[\w\s]{0,50}'
+          example: Walk the dog
+        groupId:
+          description: Group's unique identifier the task belongs to
+          type: string
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+        assignedTo:
+          description: Actual responsable for task completion
+          type: string
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+        effort:
+          description: Defines the effort needed for the task
+          type: integer
+          format: int32
+          min: 1
+          max: 10
+        done:
+          description: Defines if the task is done
+          type: boolean
+          default: false
+        dueDate:
+          description: Time the task is schedule to be done
+          type: string
+          format: date
+          example: 2021-12-12
+
+    TaskOut:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9a-fA-F]{24}'
+          example: 61435636c398c785ab8b2cb8
+        description:
+          type: string
+          pattern: '[\w\s]{0,50}'
+          example: Walk the dog
+        group:
+          $ref: ../common.yml#/components/schemas/Group
+        assignedTo:
+          description: Actual responsable for task completion
+          type: string
+          pattern: '[0-9a-zA-Z]{6,24}'
+          example: notabug
+        effort:
+          description: Defines the effort needed for the task
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 10
+          example: 5
+        done:
+          description: Defines if the task is done
+          type: boolean
+          default: false
+        dueDate:
+          description: Time the task is schedule to be done
+          type: string
+          format: date
+          example: 2021-12-12
+
+
+    TaskListOut:
+      type: object
+      properties:
+
+        query:
+          type: object
+          description: Brief description of executed query
+          properties:
+            username:
+              type: string
+              pattern: '[0-9a-zA-Z]{6,24}'
+              example: notabug
+            groupId:
+              type: string
+              pattern: '[0-9a-fA-F]{24}'
+              example: 61435636c398c785ab8b2cb8
+            done:
+              type: boolean
+
+        tasks:
+          type: array
+          items:
+            $ref: ../common.yml#/components/schemas/Task
+
+        records:
+          type: integer
+          description: Response size
+          format: int32

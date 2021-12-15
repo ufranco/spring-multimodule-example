@@ -21,7 +21,7 @@ public class GroupRepositoryIT {
   private GroupRepository repository;
 
   private static final MongoDBContainer container = new MongoDBContainer("mongo:4.2.16")
-      .withReuse(true);
+      .withExposedPorts(27017);
 
   @DynamicPropertySource
   public static void overrideProps(final DynamicPropertyRegistry registry) {

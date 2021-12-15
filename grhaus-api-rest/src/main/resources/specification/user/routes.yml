@@ -1,20 +1,20 @@
 post:
   tags:
-    - Task
+    - User
   description: Creates User
   operationId: createUser
   requestBody:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/UserIn
+          $ref: ./common.yml#/components/schemas/UserIn
   responses:
     '201':
       description: User created successfully
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/UserOut
+            $ref: ./common.yml#/components/schemas/UserOut
           examples:
             default:
               value: {
@@ -51,21 +51,21 @@ post:
 
 put:
   tags:
-    - Task
+    - User
   description: Updates User
   operationId: updateUser
   requestBody:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/UserIn
+          $ref: ./common.yml#/components/schemas/UserIn
   responses:
     '200':
       description: User updated successfully
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/UserOut
+            $ref: ./common.yml#/components/schemas/UserOut
           examples:
             default:
               value: {

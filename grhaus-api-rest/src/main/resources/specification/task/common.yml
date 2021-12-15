@@ -1,13 +1,12 @@
 components:
   schemas:
-
     TaskIn:
       type: object
       required:
         - description
         - groupId
         - assignedTo
-        - averageEffort
+        - effort
         - dueDate
       properties:
         description:
@@ -28,8 +27,8 @@ components:
           description: Defines the effort needed for the task
           type: integer
           format: int32
-          min: 1
-          max: 10
+          minimum: 1
+          maximum: 10
         done:
           description: Defines if the task is done
           type: boolean
@@ -79,7 +78,6 @@ components:
     TaskListOut:
       type: object
       properties:
-
         query:
           type: object
           description: Brief description of executed query

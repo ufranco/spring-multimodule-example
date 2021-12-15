@@ -1,6 +1,5 @@
 components:
   schemas:
-
     User:
       description: Lighweight User object
       type: object
@@ -65,6 +64,7 @@ components:
           example: 2021-12-12
 
     ErrorOut:
+      description: Generic Error DTO
       type: object
       properties:
         code:

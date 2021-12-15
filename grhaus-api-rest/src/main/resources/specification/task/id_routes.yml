@@ -18,7 +18,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/TaskOut
+            $ref: ./common.yml#/components/schemas/TaskOut
           examples:
             default:
               value: {
@@ -77,14 +77,14 @@ put:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/TaskIn
+          $ref: ./common.yml#/components/schemas/TaskIn
   responses:
     '200':
       description: Task updated successfully
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/TaskOut
+            $ref: ./common.yml#/components/schemas/TaskOut
           examples:
             default:
               value: {

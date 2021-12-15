@@ -1,0 +1,41 @@
+openapi: 3.0.3
+
+info:
+  title: GRhaus - Group Task Assignment & Scheduling
+  description: API for Group, User and Task
+  version: 1.0.0
+  contact:
+    name: Ulises Javier Franco
+    email: ulisesjavierfranco@gmail.com
+
+servers:
+  - url: http://localhost:9900/grhaus
+    description: localhost
+
+tags:
+  - name: Group
+  - name: User
+  - name: Task
+
+paths:
+
+  /user:
+    $ref: ./user/routes.yml
+
+  /user/{userId}:
+    $ref: ./user/id_routes.yml
+
+  /tasks/:
+    $ref: ./task/query_routes.yml
+
+  /task:
+    $ref: ./task/routes.yml
+
+  /task/{taskId}:
+    $ref: ./task/id_routes.yml
+
+  /group:
+    $ref: ./group/routes.yml
+
+  /group/{groupId}:
+    $ref: ./group/id_routes.yml

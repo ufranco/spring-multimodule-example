@@ -5,8 +5,10 @@ import com.grehab.grhaus.domain.commands.task.TaskOutCommand;
 import com.grehab.grhaus.domain.usecases.task.UpdateTaskUseCase;
 import com.grehab.grhaus.infrastructure.repositories.TaskRepository;
 import com.grehab.grhaus.usecases.mappers.TaskMapper;
+import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

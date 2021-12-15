@@ -18,7 +18,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/GroupOut
+            $ref: ./common.yml#/components/schemas/GroupOut
           examples:
             default:
               value: {
@@ -86,7 +86,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/GroupIn
+          $ref: ./common.yml#/components/schemas/GroupIn
   responses:
 
     '200':
@@ -94,7 +94,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/GroupOut
+            $ref: ./common.yml#/components/schemas/GroupOut
           examples:
             default:
               value: {

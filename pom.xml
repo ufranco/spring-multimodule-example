@@ -37,9 +37,9 @@
 
 	<modules>
 		<module>grhaus-domain</module>
-		<module>grhaus-api-rest</module>
-		<module>grhaus-use-cases</module>
 		<module>grhaus-infrastructure</module>
+		<module>grhaus-use-cases</module>
+		<module>grhaus-api-rest</module>
 		<module>grhaus-boot</module>
 	</modules>
 
@@ -53,7 +53,7 @@
 		<sortpom-plugin.version>3.0.0</sortpom-plugin.version>
 		<release-plugin.versiun>3.0.0-M4</release-plugin.versiun>
 		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-		<checkstyle-plugin.version>9.0</checkstyle-plugin.version>
+		<checkstyle-plugin.version>9.2</checkstyle-plugin.version>
 		<source-plugin.version>3.2.1</source-plugin.version>
 		<project-report.version>3.1.2</project-report.version>
 		<jar-plugin.version>3.2.0</jar-plugin.version>
@@ -134,7 +134,7 @@
 				</plugin>
 
 				<plugin>
-					<groupId>com.apache.maven.plugins</groupId>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${maven-checkstyle-plugin.version}</version>
 					<dependencies>

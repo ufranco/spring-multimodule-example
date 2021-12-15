@@ -18,7 +18,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/UserOut
+            $ref: ./common.yml#/components/schemas/UserOut
           examples:
             default:
               value: {

@@ -7,14 +7,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/GroupIn
+          $ref: ./common.yml#/components/schemas/GroupIn
     responses:
       '201':
         description: Group created successfully
         content:
           application/json:
             schema:
-              $ref: components.yml#/components/schemas/GroupOut
+              $ref: ./common.yml#/components/schemas/GroupOut
             examples:
               default:
                 value: {

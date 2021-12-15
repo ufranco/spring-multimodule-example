@@ -7,14 +7,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: components.yml#/components/schemas/TaskIn
+          $ref: ./common.yml#/components/schemas/TaskIn
   responses:
     '201':
       description: Task created successfully
       content:
         application/json:
           schema:
-            $ref: components.yml#/components/schemas/TaskOut
+            $ref: ./common.yml#/components/schemas/TaskOut
           examples:
             default:
               value: {

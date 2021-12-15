@@ -16,7 +16,8 @@ I used spectral lint for OpenApi syntax checking. \
 Here's a post about it: 
 https://nordicapis.com/using-spectral-to-lint-your-openapi-definition/
 
-OpenApi code generator (for some reason it is not working on modular structured contracts): https://www.baeldung.com/java-openapi-generator-server
+OpenApi code generator (for some reason it is not working on modular structured contracts):
+https://medium.com/swlh/openapi-swagger-ui-codegen-with-spring-boot-1afb1c0a570e
 
 Testcontainers for IT's:
 https://www.youtube.com/watch?v=v3eQCIWLYOw

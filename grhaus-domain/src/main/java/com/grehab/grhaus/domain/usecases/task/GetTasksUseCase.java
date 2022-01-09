@@ -5,6 +5,6 @@ import com.grehab.grhaus.domain.commands.task.TaskListOutCommand;
 
 public interface GetTasksUseCase {
 
-  TaskListOutCommand getTasks(final TaskListInCommand inCommand);
+  TaskListOutCommand getTasks(TaskListInCommand inCommand);
 
 }

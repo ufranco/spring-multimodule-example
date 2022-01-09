@@ -5,6 +5,6 @@ import com.grehab.grhaus.domain.commands.task.TaskOutCommand;
 
 public interface CreateTaskUseCase {
 
-  TaskOutCommand createTask(final TaskInCommand inCommand);
+  TaskOutCommand createTask(TaskInCommand inCommand);
 
 }

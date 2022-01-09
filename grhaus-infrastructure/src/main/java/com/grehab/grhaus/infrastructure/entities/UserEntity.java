@@ -1,7 +1,6 @@
-package com.grehab.grhaus.domain.entities;
+package com.grehab.grhaus.infrastructure.entities;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

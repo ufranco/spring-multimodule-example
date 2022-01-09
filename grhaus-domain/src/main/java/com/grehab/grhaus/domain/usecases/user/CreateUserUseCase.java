@@ -5,6 +5,6 @@ import com.grehab.grhaus.domain.commands.user.UserOutCommand;
 
 public interface CreateUserUseCase {
 
-  UserOutCommand createUser(final UserInCommand inCommand);
+  UserOutCommand createUser(UserInCommand inCommand);
 
 }

@@ -5,6 +5,6 @@ import com.grehab.grhaus.domain.commands.group.GroupOutCommand;
 
 public interface UpdateGroupUseCase {
 
-  GroupOutCommand updateGroup(final GroupInCommand inCommand);
+  GroupOutCommand updateGroup(GroupInCommand inCommand);
 
 }

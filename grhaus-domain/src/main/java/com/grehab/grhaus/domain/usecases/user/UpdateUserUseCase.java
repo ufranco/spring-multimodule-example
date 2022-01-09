@@ -5,6 +5,6 @@ import com.grehab.grhaus.domain.commands.user.UserOutCommand;
 
 public interface UpdateUserUseCase {
 
-  UserOutCommand updateUser(final UserInCommand inCommand);
+  UserOutCommand updateUser(UserInCommand inCommand);
 
 }

@@ -1,10 +1,7 @@
-package com.grehab.grhaus.domain.entities;
+package com.grehab.grhaus.infrastructure.entities;
 
-import java.util.Date;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -16,28 +13,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Value
 @EqualsAndHashCode
 @Builder(toBuilder = true)
-public class TaskEntity {
+public class GroupEntity {
 
   @Id
   String id;
 
-  @NotBlank
-  @Pattern(regexp = "[0-9a-fA-F]{24}")
-  String groupId;
+  @NotBlank(message = "Name is mandatory")
+  @Pattern(regexp = "[\\w\\s&]{6,50}")
+  String name;
 
-  @NotBlank
+  @NotBlank(message = "Description is mandatory")
   @Pattern(regexp = "[\\w\\s.,]{0,300}")
   String description;
-
-  @Pattern(regexp = "[a-zA-Z0-9]{6,24}")
-  String assignedTo;
-
-  @Min(1)
-  @Max(10)
-  Integer effort;
-
-  Boolean done;
-
-  Date dueDate;
 
 }

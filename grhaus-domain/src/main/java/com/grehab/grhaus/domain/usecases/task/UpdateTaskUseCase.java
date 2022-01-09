@@ -5,5 +5,5 @@ import com.grehab.grhaus.domain.commands.task.TaskOutCommand;
 
 public interface UpdateTaskUseCase {
 
-  TaskOutCommand updateTask(final TaskInCommand inCommand);
+  TaskOutCommand updateTask(TaskInCommand inCommand);
 }

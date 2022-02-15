@@ -12,6 +12,10 @@ management:
     health.enabled: true
     shutdown.enabled: ${SPRING_ACTUATOR_SHUTDOWN_ENABLED:false}
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
 
 spring:
   profiles:

@@ -16,6 +16,8 @@ import com.grehab.grhaus.domain.usecases.group.UpdateGroupUseCase;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lombok.val;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +52,7 @@ public class GroupApiController implements GroupApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteGroup(String id) throws GRHausException {
+  public ResponseEntity<Void> deleteGroup(String id) throws GRHausException, NotFoundException {
     Optional.ofNullable(id)
         .orElseThrow(() ->
             new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
@@ -62,9 +64,8 @@ public class GroupApiController implements GroupApi {
   }
 
   @Override
-  public ResponseEntity<GroupOut> getGroup(String id) throws GRHausException {
-    return Optional.ofNullable(id)
-        .map(getGroupByIdUseCase::getGroupById)
+  public ResponseEntity<GroupOut> getGroup(String id) throws GRHausException, NotFoundException {
+    return Optional.ofNullable(getGroupByIdUseCase.getGroupById(id))
         .map(mapper::mapToGroupOut)
         .map(ResponseEntity::ok)
         .orElseThrow(() ->
@@ -73,10 +74,13 @@ public class GroupApiController implements GroupApi {
   }
 
   @Override
-  public ResponseEntity<GroupOut> updateGroup(String id, GroupIn groupIn) throws GRHausException {
-    return Optional.ofNullable(groupIn)
+  public ResponseEntity<GroupOut> updateGroup(String id, GroupIn groupIn)
+      throws GRHausException, NotFoundException {
+    val inCommand =  Optional.ofNullable(groupIn)
         .map(group -> mapper.mapToGroupInCommand(id, group))
-        .map(updateTaskUseCase::updateGroup)
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
+
+    return Optional.of(updateTaskUseCase.updateGroup(inCommand))
         .map(mapper::mapToGroupOut)
         .map(ResponseEntity::ok)
         .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));

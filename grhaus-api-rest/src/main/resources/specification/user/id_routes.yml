@@ -22,6 +22,7 @@ get:
           examples:
             default:
               value: {
+                id: 620b0b0760673c5d814b7e3e,
                 username: notabug,
                 group: {
                   id: 61435636c398c785ab8b2cb6,

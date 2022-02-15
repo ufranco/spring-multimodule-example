@@ -10,6 +10,8 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class UserOutCommand {
 
+  String id;
+
   String username;
 
   GroupDTO group;

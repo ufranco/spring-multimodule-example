@@ -134,13 +134,13 @@
 								<swaggerDocketConfig>true</swaggerDocketConfig>
 								<sourceFolder>src/main/java/</sourceFolder>
 								<delegatePattern>true</delegatePattern>
+								<unhandledException>true</unhandledException>
 								<interfaceOnly>true</interfaceOnly>
 								<!--
-								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								<skipOverwrite>true</skipOverwrite>
 								<skipDefaultInterface>true</skipDefaultInterface>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
 								-->
-								<unhandledException>true</unhandledException>
 							</configOptions>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 						</configuration>

@@ -6,6 +6,7 @@ import com.grehab.grhaus.infrastructure.repositories.UserRepository;
 import com.grehab.grhaus.usecases.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -22,7 +23,7 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
   private final UserMapper mapper;
 
   @Override
-  public void deleteUser(String username) {
+  public void deleteUser(String username) throws NotFoundException {
     // TODO document why this method is empty
   }
 }

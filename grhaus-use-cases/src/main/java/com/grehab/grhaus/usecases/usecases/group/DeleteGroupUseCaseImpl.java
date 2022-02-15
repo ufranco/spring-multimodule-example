@@ -6,6 +6,7 @@ import com.grehab.grhaus.infrastructure.repositories.TaskRepository;
 import com.grehab.grhaus.infrastructure.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -22,7 +23,7 @@ public class DeleteGroupUseCaseImpl implements DeleteGroupUseCase {
   private final TaskRepository taskRepository;
 
   @Override
-  public void deleteGroup(String id) {
+  public void deleteGroup(String id) throws NotFoundException {
     // TODO document why this method is empty
   }
 }

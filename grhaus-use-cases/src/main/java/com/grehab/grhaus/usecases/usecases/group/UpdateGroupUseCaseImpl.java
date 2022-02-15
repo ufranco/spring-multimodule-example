@@ -7,6 +7,7 @@ import com.grehab.grhaus.infrastructure.repositories.GroupRepository;
 import com.grehab.grhaus.usecases.mappers.GroupMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,7 +22,7 @@ public class UpdateGroupUseCaseImpl implements UpdateGroupUseCase {
   private final GroupMapper mapper;
 
   @Override
-  public GroupOutCommand updateGroup(GroupInCommand inCommand) {
+  public GroupOutCommand updateGroup(GroupInCommand inCommand) throws NotFoundException {
     return null;
   }
 }

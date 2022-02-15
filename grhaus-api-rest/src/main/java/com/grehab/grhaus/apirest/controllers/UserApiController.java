@@ -17,6 +17,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.val;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,21 +52,15 @@ public class UserApiController implements UserApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteUser(String id) throws GRHausException {
-    Optional.ofNullable(id)
-        .orElseThrow(() ->
-            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
-        );
-
+  public ResponseEntity<Void> deleteUser(String id) throws NotFoundException {
     deleteUserUseCase.deleteUser(id);
 
     return new ResponseEntity<>(NO_CONTENT);
   }
 
   @Override
-  public ResponseEntity<UserOut> getUser(String id) throws GRHausException {
-    return Optional.ofNullable(id)
-        .map(getUserByIdUseCase::getUserById)
+  public ResponseEntity<UserOut> getUser(String id) throws GRHausException, NotFoundException {
+    return Optional.ofNullable(getUserByIdUseCase.getUserById(id))
         .map(mapper::mapToUserOut)
         .map(ResponseEntity::ok)
         .orElseThrow(() ->
@@ -74,14 +69,14 @@ public class UserApiController implements UserApi {
   }
 
   @Override
-  public ResponseEntity<UserOut> updateUser(UserIn userIn) throws GRHausException {
-    return Optional.ofNullable(userIn)
+  public ResponseEntity<UserOut> updateUser(UserIn userIn) throws GRHausException, NotFoundException {
+    val inCommand = Optional.ofNullable(userIn)
         .map(mapper::mapToUserInCommand)
-        .map(updateUserUseCase::updateUser)
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
+
+    return Optional.of(updateUserUseCase.updateUser(inCommand))
         .map(mapper::mapToUserOut)
         .map(ResponseEntity::ok)
-        .orElseThrow(() ->
-            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
-        );
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
   }
 }

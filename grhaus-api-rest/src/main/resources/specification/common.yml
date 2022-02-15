@@ -4,8 +4,13 @@ components:
       description: Lighweight User object
       type: object
       properties:
-        username:
+        id:
           description: User's unique identifier
+          type: string
+          pattern: '[0-9a-fA-F]{24}'
+          example: 620b0b0760673c5d814b7e3e
+        username:
+          description: User's name
           type: string
           pattern: '[0-9a-zA-Z]{6,24}'
           example: notabug

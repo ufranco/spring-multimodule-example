@@ -3,19 +3,30 @@ package com.grehab.grhaus.infrastructure.entities;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.Value;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("Task")
-@Value
-@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter(AccessLevel.PRIVATE)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder(toBuilder = true)
+@ToString
 public class GroupEntity {
 
   @Id
+  @Pattern(regexp = "[0-9a-fA-F]{24}")
+  @EqualsAndHashCode.Include
   String id;
 
   @NotBlank(message = "Name is mandatory")

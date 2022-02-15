@@ -6,5 +6,8 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class UserDTO {
+
+  String id;
+
   String username;
 }

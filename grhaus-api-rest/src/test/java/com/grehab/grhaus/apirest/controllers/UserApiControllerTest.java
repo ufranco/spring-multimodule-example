@@ -28,6 +28,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -65,7 +66,7 @@ class UserApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenGetUser_shouldSuccess() throws GRHausException {
+  void givenValidId_whenGetUser_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(getUserByIdUseCase.getUserById(anyString()))
         .willReturn(getUserOutCommand());
@@ -131,7 +132,7 @@ class UserApiControllerTest {
   }
 
   @Test
-  void givenValidUserIn_whenUpdateUser_shouldSuccess() throws GRHausException {
+  void givenValidUserIn_whenUpdateUser_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(mapper.mapToUserInCommand(any(UserIn.class)))
         .willReturn(getUserInCommand());
@@ -165,7 +166,7 @@ class UserApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenDeleteUser_shouldSuccess() throws GRHausException {
+  void givenValidId_whenDeleteUser_shouldSuccess() throws NotFoundException {
     //WHEN
     val result = controller.deleteUser(USER_NAME);
 

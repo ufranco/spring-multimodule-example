@@ -17,6 +17,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.val;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,21 +52,15 @@ public class TaskApiController implements TaskApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteTask(String id) throws GRHausException {
-    Optional.ofNullable(id)
-        .orElseThrow(() ->
-            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
-        );
-
+  public ResponseEntity<Void> deleteTask(String id) throws NotFoundException {
     deleteTaskUseCase.deleteTask(id);
 
     return new ResponseEntity<>(NO_CONTENT);
   }
 
   @Override
-  public ResponseEntity<TaskOut> getTask(String id) throws GRHausException {
-    return Optional.ofNullable(id)
-        .map(getTaskByIdUseCase::getTaskById)
+  public ResponseEntity<TaskOut> getTask(String id) throws GRHausException, NotFoundException {
+    return Optional.ofNullable(getTaskByIdUseCase.getTaskById(id))
         .map(mapper::mapToTaskOut)
         .map(ResponseEntity::ok)
         .orElseThrow(() ->
@@ -74,10 +69,12 @@ public class TaskApiController implements TaskApi {
   }
 
   @Override
-  public ResponseEntity<TaskOut> updateTask(String id, TaskIn taskIn) throws GRHausException {
-    return Optional.ofNullable(taskIn)
+  public ResponseEntity<TaskOut> updateTask(String id, TaskIn taskIn) throws GRHausException, NotFoundException {
+    val inCommand = Optional.of(taskIn)
         .map(task -> mapper.mapToTaskInCommand(id, task))
-        .map(updateTaskUseCase::updateTask)
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
+
+    return Optional.of(updateTaskUseCase.updateTask(inCommand))
         .map(mapper::mapToTaskOut)
         .map(ResponseEntity::ok)
         .orElseThrow(() ->

@@ -28,6 +28,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -65,7 +66,7 @@ class TaskApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenGetTask_shouldSuccess() throws GRHausException {
+  void givenValidId_whenGetTask_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(getTaskByIdUseCase.getTaskById(anyString()))
         .willReturn(getTaskOutCommand());
@@ -131,7 +132,7 @@ class TaskApiControllerTest {
   }
 
   @Test
-  void givenValidTaskIn_whenUpdateTask_shouldSuccess() throws GRHausException {
+  void givenValidTaskIn_whenUpdateTask_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(mapper.mapToTaskInCommand(anyString(), any(TaskIn.class)))
         .willReturn(getTaskInCommand());
@@ -165,7 +166,7 @@ class TaskApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenDeleteTask_shouldSuccess() throws GRHausException {
+  void givenValidId_whenDeleteTask_shouldSuccess() throws NotFoundException {
     //WHEN
     val result = controller.deleteTask(TASK_ID);
 

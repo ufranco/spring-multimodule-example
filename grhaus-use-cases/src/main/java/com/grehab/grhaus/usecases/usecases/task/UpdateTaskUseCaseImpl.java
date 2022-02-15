@@ -7,6 +7,7 @@ import com.grehab.grhaus.infrastructure.repositories.TaskRepository;
 import com.grehab.grhaus.usecases.mappers.TaskMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,7 +22,7 @@ public class UpdateTaskUseCaseImpl implements UpdateTaskUseCase {
   private final TaskMapper mapper;
 
   @Override
-  public TaskOutCommand updateTask(TaskInCommand inCommand) {
+  public TaskOutCommand updateTask(TaskInCommand inCommand)  throws NotFoundException {
     return null;
   }
 }

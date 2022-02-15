@@ -6,6 +6,7 @@ import com.grehab.grhaus.infrastructure.repositories.UserRepository;
 import com.grehab.grhaus.usecases.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,9 +21,9 @@ public class GetUserByIdUseCaseImpl implements GetUserByIdUseCase {
   private final UserMapper mapper;
 
   @Override
-  public UserOutCommand getUserById(String username) {
+  public UserOutCommand getUserById(String username) throws NotFoundException {
     return repository.findById(username)
         .map(mapper::mapUserEntityToUserOutCommand)
-        .orElse(null);
+        .orElseThrow(NotFoundException::new);
   }
 }

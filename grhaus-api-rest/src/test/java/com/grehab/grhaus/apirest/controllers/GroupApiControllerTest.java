@@ -28,6 +28,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -65,7 +66,7 @@ class GroupApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenGetGroup_shouldSuccess() throws GRHausException {
+  void givenValidId_whenGetGroup_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(getGroupByIdUseCase.getGroupById(anyString()))
         .willReturn(getGroupOutCommand());
@@ -131,7 +132,7 @@ class GroupApiControllerTest {
   }
 
   @Test
-  void givenValidGroupIn_whenUpdateGroup_shouldSuccess() throws GRHausException {
+  void givenValidGroupIn_whenUpdateGroup_shouldSuccess() throws GRHausException, NotFoundException {
     //GIVEN
     given(mapper.mapToGroupInCommand(anyString(), any(GroupIn.class)))
         .willReturn(getGroupInCommand());
@@ -165,7 +166,7 @@ class GroupApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenDeleteGroup_shouldSuccess() throws GRHausException {
+  void givenValidId_whenDeleteGroup_shouldSuccess() throws GRHausException, NotFoundException {
     //WHEN
     val result = controller.deleteGroup(GROUP_ID);
 

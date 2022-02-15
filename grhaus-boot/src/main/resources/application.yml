@@ -1,5 +1,5 @@
 server:
-  port: 9900
+  port: ${SPRING_PORT:9900}
   application.name: GRHAUS
   servlet.context-path: /grhaus
 
@@ -10,9 +10,9 @@ management:
   endpoint:
     info.enabled: true
     health.enabled: true
-    shutdown.enabled: true
+    shutdown.enabled: ${SPRING_ACTUATOR_SHUTDOWN_ENABLED:false}
 
 
 spring:
   profiles:
-    active: test
+    active: ${SPRING_PROFILE:test}

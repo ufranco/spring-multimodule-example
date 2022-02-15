@@ -7,6 +7,7 @@ import com.grehab.grhaus.infrastructure.repositories.UserRepository;
 import com.grehab.grhaus.usecases.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,7 +22,7 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
   private final UserMapper mapper;
 
   @Override
-  public UserOutCommand updateUser(UserInCommand inCommand) {
+  public UserOutCommand updateUser(UserInCommand inCommand) throws NotFoundException {
     return null;
   }
 }

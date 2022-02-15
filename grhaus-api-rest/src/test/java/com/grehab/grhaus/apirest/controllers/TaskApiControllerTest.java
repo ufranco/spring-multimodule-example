@@ -12,6 +12,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 import com.grehab.grhaus.apirest.mappers.RestTaskMapper;
 import com.grehab.grhaus.apirest.model.TaskIn;
@@ -82,7 +83,7 @@ class TaskApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly();
+        .containsExactly(getTaskOut(), OK);
   }
 
   @Test
@@ -117,7 +118,7 @@ class TaskApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .isEqualTo(CREATED);
+        .containsExactly(getTaskOut(), CREATED);
   }
 
   @Test
@@ -151,7 +152,7 @@ class TaskApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly();
+        .containsExactly(getTaskOut(), OK);
   }
 
   @Test
@@ -166,7 +167,7 @@ class TaskApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenDeleteTask_shouldSuccess() throws NotFoundException {
+  void givenValidId_whenDeleteTask_shouldSuccess() throws NotFoundException, GRHausException {
     //WHEN
     val result = controller.deleteTask(TASK_ID);
 
@@ -175,6 +176,6 @@ class TaskApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly(NO_CONTENT);
+        .containsExactly(null, NO_CONTENT);
   }
 }

@@ -117,7 +117,7 @@ class GroupApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly(CREATED);
+        .containsExactly(null, CREATED);
   }
 
   @Test
@@ -175,7 +175,7 @@ class GroupApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly(NO_CONTENT);
+        .containsExactly(null, NO_CONTENT);
   }
 
 }

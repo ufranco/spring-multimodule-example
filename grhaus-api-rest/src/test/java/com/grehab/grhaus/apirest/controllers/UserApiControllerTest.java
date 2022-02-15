@@ -12,6 +12,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 import com.grehab.grhaus.apirest.mappers.RestUserMapper;
 import com.grehab.grhaus.apirest.model.UserIn;
@@ -117,7 +118,7 @@ class UserApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly(CREATED);
+        .containsExactly(getUserOut(), CREATED);
   }
 
   @Test
@@ -151,7 +152,7 @@ class UserApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .isNotEmpty();
+        .containsExactly(getUserOut(), OK);
   }
 
   @Test
@@ -166,7 +167,7 @@ class UserApiControllerTest {
   }
 
   @Test
-  void givenValidId_whenDeleteUser_shouldSuccess() throws NotFoundException {
+  void givenValidId_whenDeleteUser_shouldSuccess() throws NotFoundException, GRHausException {
     //WHEN
     val result = controller.deleteUser(USER_NAME);
 
@@ -175,6 +176,6 @@ class UserApiControllerTest {
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
         .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
-        .containsExactly(NO_CONTENT);
+        .containsExactly(null, NO_CONTENT);
   }
 }

@@ -44,15 +44,16 @@ public class UserApiController implements UserApi {
         .map(mapper::mapToUserInCommand)
         .map(createUserUseCase::createUser)
         .map(mapper::mapToUserOut)
-        .orElseThrow(() ->
-            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
-        );
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
 
     return new ResponseEntity<>(userOut, CREATED);
   }
 
   @Override
-  public ResponseEntity<Void> deleteUser(String id) throws NotFoundException {
+  public ResponseEntity<Void> deleteUser(String id) throws NotFoundException, GRHausException {
+    Optional.ofNullable(id)
+            .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
+
     deleteUserUseCase.deleteUser(id);
 
     return new ResponseEntity<>(NO_CONTENT);

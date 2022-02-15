@@ -54,9 +54,7 @@ public class GroupApiController implements GroupApi {
   @Override
   public ResponseEntity<Void> deleteGroup(String id) throws GRHausException, NotFoundException {
     Optional.ofNullable(id)
-        .orElseThrow(() ->
-            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
-        );
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
 
     deleteGroupUseCase.deleteGroup(id);
 

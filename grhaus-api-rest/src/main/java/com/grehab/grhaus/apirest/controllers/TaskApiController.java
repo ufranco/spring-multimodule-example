@@ -52,7 +52,10 @@ public class TaskApiController implements TaskApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteTask(String id) throws NotFoundException {
+  public ResponseEntity<Void> deleteTask(String id) throws NotFoundException, GRHausException {
+    Optional.ofNullable(id)
+        .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
+
     deleteTaskUseCase.deleteTask(id);
 
     return new ResponseEntity<>(NO_CONTENT);
@@ -70,7 +73,7 @@ public class TaskApiController implements TaskApi {
 
   @Override
   public ResponseEntity<TaskOut> updateTask(String id, TaskIn taskIn) throws GRHausException, NotFoundException {
-    val inCommand = Optional.of(taskIn)
+    val inCommand = Optional.ofNullable(taskIn)
         .map(task -> mapper.mapToTaskInCommand(id, task))
         .orElseThrow(() -> new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR));
 

@@ -81,7 +81,7 @@ class UserApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(HttpEntity::getBody)
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
         .isNotEmpty();
   }
 
@@ -116,7 +116,7 @@ class UserApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(ResponseEntity::getStatusCode)
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
         .containsExactly(CREATED);
   }
 
@@ -150,7 +150,7 @@ class UserApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(HttpEntity::getBody)
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
         .isNotEmpty();
   }
 
@@ -174,7 +174,7 @@ class UserApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(ResponseEntity::getStatusCode)
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
         .containsExactly(NO_CONTENT);
   }
 }

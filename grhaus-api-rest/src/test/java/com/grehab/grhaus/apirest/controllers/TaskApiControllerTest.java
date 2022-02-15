@@ -81,8 +81,8 @@ class TaskApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(HttpEntity::getBody)
-        .isNotEmpty();
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
+        .containsExactly();
   }
 
   @Test
@@ -116,8 +116,8 @@ class TaskApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(ResponseEntity::getStatusCode)
-        .containsExactly(CREATED);
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
+        .isEqualTo(CREATED);
   }
 
   @Test
@@ -150,8 +150,8 @@ class TaskApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(HttpEntity::getBody)
-        .isNotEmpty();
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
+        .containsExactly();
   }
 
   @Test
@@ -174,7 +174,7 @@ class TaskApiControllerTest {
     assertThat(result)
         .isNotNull()
         .isInstanceOf(ResponseEntity.class)
-        .extracting(ResponseEntity::getStatusCode)
+        .extracting(HttpEntity::getBody, ResponseEntity::getStatusCode)
         .containsExactly(NO_CONTENT);
   }
 }

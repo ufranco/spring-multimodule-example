@@ -67,25 +67,19 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.5.12</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
+			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.1</version>
+			<version>${jackson-databind-nullable.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-annotations</artifactId>
-			<version>1.5.20</version>
+			<version>${swagger-annotations.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -117,7 +111,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>5.3.0</version>
+				<version>${openapi-generator-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -131,15 +125,15 @@
 							<apiPackage>com.grehab.grhaus.apirest.api</apiPackage>
 							<modelPackage>com.grehab.grhaus.apirest.model</modelPackage>
 							<configOptions>
-								<swaggerDocketConfig>true</swaggerDocketConfig>
 								<sourceFolder>src/main/java/</sourceFolder>
-								<delegatePattern>true</delegatePattern>
-								<unhandledException>true</unhandledException>
 								<interfaceOnly>true</interfaceOnly>
-								<!--
-								<skipOverwrite>true</skipOverwrite>
-								<skipDefaultInterface>true</skipDefaultInterface>
 								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<skipOverwrite>true</skipOverwrite>
+								<unhandledException>true</unhandledException>
+								<!--
+								<delegatePattern>true</delegatePattern>
+								<swaggerDocketConfig>true</swaggerDocketConfig>
+								<skipDefaultInterface>true</skipDefaultInterface>
 								-->
 							</configOptions>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>

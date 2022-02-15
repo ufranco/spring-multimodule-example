@@ -131,7 +131,6 @@
 								<skipOverwrite>true</skipOverwrite>
 								<unhandledException>true</unhandledException>
 								<!--
-								<delegatePattern>true</delegatePattern>
 								<swaggerDocketConfig>true</swaggerDocketConfig>
 								<skipDefaultInterface>true</skipDefaultInterface>
 								-->

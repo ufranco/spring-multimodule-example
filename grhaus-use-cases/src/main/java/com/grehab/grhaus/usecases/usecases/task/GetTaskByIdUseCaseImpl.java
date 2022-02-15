@@ -21,6 +21,8 @@ public class GetTaskByIdUseCaseImpl implements GetTaskByIdUseCase {
 
   @Override
   public TaskOutCommand getTaskById(String id) {
-    return null;
+    return repository.findById(id)
+        .map(mapper::mapTaskEntityToTaskOutCommand)
+        .orElse(null);
   }
 }

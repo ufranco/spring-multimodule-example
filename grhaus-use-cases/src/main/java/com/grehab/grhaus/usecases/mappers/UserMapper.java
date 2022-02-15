@@ -1,15 +1,15 @@
 package com.grehab.grhaus.usecases.mappers;
 
-import com.grehab.grhaus.domain.commands.task.TaskInCommand;
-import com.grehab.grhaus.domain.commands.task.TaskOutCommand;
-import com.grehab.grhaus.domain.entities.TaskEntity;
+import com.grehab.grhaus.domain.commands.user.UserInCommand;
+import com.grehab.grhaus.domain.commands.user.UserOutCommand;
+import com.grehab.grhaus.infrastructure.entities.UserEntity;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
-  TaskEntity mapTaskInCommandToTaskEntity(final TaskInCommand inCommand);
+  UserEntity mapUserInCommandToUserEntity(UserInCommand inCommand);
 
-  TaskOutCommand mapTaskEntityToTaskOutCommand(final TaskEntity entity);
+  UserOutCommand mapUserEntityToUserOutCommand(UserEntity entity);
 
 }

@@ -1,6 +1,6 @@
 package com.grehab.grhaus.domain.commands.task;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Value;
 
@@ -20,5 +20,5 @@ public class TaskInCommand {
 
   Boolean done;
 
-  Date dueDate;
+  LocalDate dueDate;
 }

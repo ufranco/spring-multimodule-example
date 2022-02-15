@@ -24,13 +24,14 @@
 
 		<dependency>
 			<groupId>com.grehab</groupId>
-			<artifactId>grhaus-infrastructure</artifactId>
+			<artifactId>grhaus-api-rest</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.grehab</groupId>
-			<artifactId>grhaus-api-rest</artifactId>
+			<artifactId>grhaus-infrastructure</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.grehab</groupId>
@@ -41,12 +42,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>${assertj.version}</version>
 		</dependency>
 
 		<dependency>
@@ -57,16 +63,27 @@
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
+			<artifactId>mongodb</artifactId>
 			<version>${testcontainers.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>mongodb</artifactId>
+			<artifactId>junit-jupiter</artifactId>
 			<version>${testcontainers.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
 	</dependencies>
 

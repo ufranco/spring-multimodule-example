@@ -20,9 +20,11 @@
 	<description>GRehab Tasking API</description>
 	<url/>
 	<inceptionYear>2021</inceptionYear>
+
 	<organization>
 		<name>GRHaus</name>
 	</organization>
+
 	<licenses/>
 
 	<developers>
@@ -58,6 +60,7 @@
 		<project-report.version>3.1.2</project-report.version>
 		<jar-plugin.version>3.2.0</jar-plugin.version>
 		<lombok.version>1.18.22</lombok.version>
+		<log4j2.version>2.17.1</log4j2.version>
 	</properties>
 
 	<dependencyManagement>
@@ -92,6 +95,31 @@
 				<artifactId>grhaus-boot</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-processor</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assertj.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -100,6 +128,7 @@
 
 		<pluginManagement>
 			<plugins>
+
 				<plugin>
 					<groupId>com.github.spotbugs</groupId>
 					<artifactId>spotbugs-maven-plugin</artifactId>
@@ -221,6 +250,7 @@
 		</pluginManagement>
 
 		<plugins>
+
 			<plugin>
 				<groupId>com.github.ekryd.sortpom</groupId>
 				<artifactId>sortpom-maven-plugin</artifactId>

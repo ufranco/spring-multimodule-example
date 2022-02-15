@@ -7,14 +7,14 @@ import com.grehab.grhaus.domain.commands.task.TaskOutCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RestTaskMapper {
-
-  @Mapping(source = "id", target = "id")
-  TaskInCommand mapToTaskInCommand(String id, TaskIn taskIn);
 
   @Mapping(target = "id", ignore = true)
   TaskInCommand mapToTaskInCommand(TaskIn taskIn);
+
+  TaskInCommand mapToTaskInCommand(String id, TaskIn taskIn);
+
 
   TaskOut mapToTaskOut(TaskOutCommand outCommand);
 

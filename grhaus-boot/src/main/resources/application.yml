@@ -1,4 +1,17 @@
-server.port: 9900
+server:
+  port: 9900
+  application.name: GRHAUS
+  servlet.context-path: /grhaus
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web.exposure.include: '*'
+  endpoint:
+    info.enabled: true
+    health.enabled: true
+    shutdown.enabled: true
+
 
 spring:
   profiles:

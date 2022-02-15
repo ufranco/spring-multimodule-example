@@ -22,7 +22,7 @@ paths:
   /user:
     $ref: ./user/routes.yml
 
-  /user/{userId}:
+  /user/{id}:
     $ref: ./user/id_routes.yml
 
   /tasks/:
@@ -31,11 +31,11 @@ paths:
   /task:
     $ref: ./task/routes.yml
 
-  /task/{taskId}:
+  /task/{id}:
     $ref: ./task/id_routes.yml
 
   /group:
     $ref: ./group/routes.yml
 
-  /group/{groupId}:
+  /group/{id}:
     $ref: ./group/id_routes.yml

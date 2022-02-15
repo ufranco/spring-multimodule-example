@@ -21,6 +21,8 @@ public class GetUserByIdUseCaseImpl implements GetUserByIdUseCase {
 
   @Override
   public UserOutCommand getUserById(String username) {
-    return null;
+    return repository.findById(username)
+        .map(mapper::mapUserEntityToUserOutCommand)
+        .orElse(null);
   }
 }

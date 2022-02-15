@@ -21,9 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
 @RestController
 @Log4j2
+@RequiredArgsConstructor
 @Validated
 public class TaskApiController implements TaskApi {
 
@@ -39,7 +39,7 @@ public class TaskApiController implements TaskApi {
 
   @Override
   public ResponseEntity<TaskOut> createTask(TaskIn taskIn) throws GRHausException {
-    val taskOut = Optional.of(taskIn)
+    val taskOut = Optional.ofNullable(taskIn)
         .map(mapper::mapToTaskInCommand)
         .map(createTaskUseCase::createTask)
         .map(mapper::mapToTaskOut)
@@ -51,7 +51,12 @@ public class TaskApiController implements TaskApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteTask(String id) {
+  public ResponseEntity<Void> deleteTask(String id) throws GRHausException {
+    Optional.ofNullable(id)
+        .orElseThrow(() ->
+            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
+        );
+
     deleteTaskUseCase.deleteTask(id);
 
     return new ResponseEntity<>(NO_CONTENT);
@@ -59,7 +64,7 @@ public class TaskApiController implements TaskApi {
 
   @Override
   public ResponseEntity<TaskOut> getTask(String id) throws GRHausException {
-    return Optional.of(id)
+    return Optional.ofNullable(id)
         .map(getTaskByIdUseCase::getTaskById)
         .map(mapper::mapToTaskOut)
         .map(ResponseEntity::ok)
@@ -70,7 +75,7 @@ public class TaskApiController implements TaskApi {
 
   @Override
   public ResponseEntity<TaskOut> updateTask(String id, TaskIn taskIn) throws GRHausException {
-    return Optional.of(taskIn)
+    return Optional.ofNullable(taskIn)
         .map(task -> mapper.mapToTaskInCommand(id, task))
         .map(updateTaskUseCase::updateTask)
         .map(mapper::mapToTaskOut)

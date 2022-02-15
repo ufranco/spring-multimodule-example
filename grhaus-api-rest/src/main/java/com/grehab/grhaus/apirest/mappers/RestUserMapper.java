@@ -6,7 +6,7 @@ import com.grehab.grhaus.domain.commands.user.UserInCommand;
 import com.grehab.grhaus.domain.commands.user.UserOutCommand;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RestUserMapper {
 
   UserInCommand mapToUserInCommand(UserIn userIn);

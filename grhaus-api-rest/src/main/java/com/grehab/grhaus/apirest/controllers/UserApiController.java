@@ -1,6 +1,7 @@
 package com.grehab.grhaus.apirest.controllers;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import com.grehab.grhaus.apirest.api.UserApi;
 import com.grehab.grhaus.apirest.mappers.RestUserMapper;
@@ -16,14 +17,13 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.val;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
 @RestController
 @Log4j2
+@RequiredArgsConstructor
 @Validated
 public class UserApiController implements UserApi {
 
@@ -39,7 +39,7 @@ public class UserApiController implements UserApi {
 
   @Override
   public ResponseEntity<UserOut> createUser(UserIn userIn) throws GRHausException {
-    val userOut = Optional.of(userIn)
+    val userOut = Optional.ofNullable(userIn)
         .map(mapper::mapToUserInCommand)
         .map(createUserUseCase::createUser)
         .map(mapper::mapToUserOut)
@@ -51,14 +51,20 @@ public class UserApiController implements UserApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteUser(String id) {
+  public ResponseEntity<Void> deleteUser(String id) throws GRHausException {
+    Optional.ofNullable(id)
+        .orElseThrow(() ->
+            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
+        );
+
     deleteUserUseCase.deleteUser(id);
-    return ResponseEntity.ok(null);
+
+    return new ResponseEntity<>(NO_CONTENT);
   }
 
   @Override
   public ResponseEntity<UserOut> getUser(String id) throws GRHausException {
-    return Optional.of(id)
+    return Optional.ofNullable(id)
         .map(getUserByIdUseCase::getUserById)
         .map(mapper::mapToUserOut)
         .map(ResponseEntity::ok)
@@ -69,7 +75,7 @@ public class UserApiController implements UserApi {
 
   @Override
   public ResponseEntity<UserOut> updateUser(UserIn userIn) throws GRHausException {
-    return Optional.of(userIn)
+    return Optional.ofNullable(userIn)
         .map(mapper::mapToUserInCommand)
         .map(updateUserUseCase::updateUser)
         .map(mapper::mapToUserOut)

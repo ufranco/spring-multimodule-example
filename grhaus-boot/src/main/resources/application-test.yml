@@ -1,1 +1,2 @@
-spring.data.mongodb.uri: mongodb://root:password@localhost:27017/grhaus
+spring.data.mongodb.uri: mongodb://root:password@localhost:27017/grhaus?&directConnection=true&ssl=false&readPreference=primary
+

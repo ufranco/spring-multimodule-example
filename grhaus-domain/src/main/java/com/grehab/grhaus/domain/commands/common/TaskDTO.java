@@ -1,6 +1,6 @@
 package com.grehab.grhaus.domain.commands.common;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Value;
 
@@ -18,6 +18,6 @@ public class TaskDTO {
 
   Integer effort;
 
-  Date dueDate;
+  LocalDate dueDate;
 
 }

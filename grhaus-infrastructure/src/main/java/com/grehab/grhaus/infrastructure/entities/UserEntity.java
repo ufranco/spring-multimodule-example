@@ -15,6 +15,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserEntity {
 
   @Id
+  @Pattern(regexp = "[0-9a-fA-F]{24}")
+  String id;
+
+  @Id
   @NotBlank(message = "Username is mandatory")
   @Pattern(regexp = "[a-zA-Z0-9]{6,24}")
   String username;

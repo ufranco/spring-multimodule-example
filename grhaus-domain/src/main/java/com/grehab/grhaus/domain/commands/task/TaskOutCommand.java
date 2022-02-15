@@ -1,7 +1,7 @@
 package com.grehab.grhaus.domain.commands.task;
 
 import com.grehab.grhaus.domain.commands.common.GroupDTO;
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,6 +21,6 @@ public class TaskOutCommand {
 
   Boolean done;
 
-  Date dueDate;
+  LocalDate dueDate;
 
 }

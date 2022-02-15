@@ -27,27 +27,40 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>${assertj.version}</version>
 		</dependency>
 
 		<!--  Swagger UI  -->
@@ -117,14 +130,19 @@
 							<generatorName>spring</generatorName>
 							<apiPackage>com.grehab.grhaus.apirest.api</apiPackage>
 							<modelPackage>com.grehab.grhaus.apirest.model</modelPackage>
-							<supportingFilesToGenerate>
-								ApiUtil.java
-							</supportingFilesToGenerate>
 							<configOptions>
+								<swaggerDocketConfig>true</swaggerDocketConfig>
 								<sourceFolder>src/main/java/</sourceFolder>
 								<delegatePattern>true</delegatePattern>
 								<interfaceOnly>true</interfaceOnly>
+								<!--
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<skipOverwrite>true</skipOverwrite>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								-->
+								<unhandledException>true</unhandledException>
 							</configOptions>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 						</configuration>
 					</execution>
 				</executions>

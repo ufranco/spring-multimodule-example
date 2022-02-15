@@ -10,6 +10,8 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class GroupOutCommand {
 
+  String id;
+
   String name;
 
   String description;

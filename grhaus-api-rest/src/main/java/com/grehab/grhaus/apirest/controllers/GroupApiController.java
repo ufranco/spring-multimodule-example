@@ -20,9 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
 @RestController
 @Log4j2
+@RequiredArgsConstructor
 @Validated
 public class GroupApiController implements GroupApi {
 
@@ -38,7 +38,7 @@ public class GroupApiController implements GroupApi {
 
   @Override
   public ResponseEntity<Void> createGroup(GroupIn groupIn) throws GRHausException {
-    Optional.of(groupIn)
+    Optional.ofNullable(groupIn)
         .map(mapper::mapToGroupInCommand)
         .map(createGroupUseCase::createGroup)
         .map(mapper::mapToGroupOut)
@@ -50,14 +50,20 @@ public class GroupApiController implements GroupApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteGroup(String id) {
+  public ResponseEntity<Void> deleteGroup(String id) throws GRHausException {
+    Optional.ofNullable(id)
+        .orElseThrow(() ->
+            new GRHausException(BusinessRuleEnum.UNEXPECTED_ERROR)
+        );
+
     deleteGroupUseCase.deleteGroup(id);
+
     return new ResponseEntity<>(NO_CONTENT);
   }
 
   @Override
   public ResponseEntity<GroupOut> getGroup(String id) throws GRHausException {
-    return Optional.of(id)
+    return Optional.ofNullable(id)
         .map(getGroupByIdUseCase::getGroupById)
         .map(mapper::mapToGroupOut)
         .map(ResponseEntity::ok)
@@ -68,7 +74,7 @@ public class GroupApiController implements GroupApi {
 
   @Override
   public ResponseEntity<GroupOut> updateGroup(String id, GroupIn groupIn) throws GRHausException {
-    return Optional.of(groupIn)
+    return Optional.ofNullable(groupIn)
         .map(group -> mapper.mapToGroupInCommand(id, group))
         .map(updateTaskUseCase::updateGroup)
         .map(mapper::mapToGroupOut)

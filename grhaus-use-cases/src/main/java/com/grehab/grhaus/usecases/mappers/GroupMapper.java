@@ -2,10 +2,10 @@ package com.grehab.grhaus.usecases.mappers;
 
 import com.grehab.grhaus.domain.commands.group.GroupInCommand;
 import com.grehab.grhaus.domain.commands.group.GroupOutCommand;
-import com.grehab.grhaus.domain.entities.GroupEntity;
+import com.grehab.grhaus.infrastructure.entities.GroupEntity;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface GroupMapper {
 
   GroupEntity mapGroupInCommandToGroupEntity(final GroupInCommand inCommand);

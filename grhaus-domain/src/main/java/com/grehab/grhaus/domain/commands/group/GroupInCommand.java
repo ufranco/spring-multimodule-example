@@ -7,6 +7,8 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class GroupInCommand {
 
+  String id;
+
   String name;
 
   String description;

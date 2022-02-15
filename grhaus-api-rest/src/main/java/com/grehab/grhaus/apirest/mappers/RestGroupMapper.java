@@ -8,13 +8,15 @@ import com.grehab.grhaus.domain.commands.group.GroupOutCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RestGroupMapper {
 
+  @Mapping(target = "id", ignore = true)
   GroupInCommand mapToGroupInCommand(GroupIn groupIn);
 
   GroupInCommand mapToGroupInCommand(String id, GroupIn groupIn);
 
-  @Mapping(target = "id", source = "")
+  @Mapping(source = "members", target = "members")
+  @Mapping(source = "tasks", target = "tasks")
   GroupOut mapToGroupOut(GroupOutCommand group);
 }

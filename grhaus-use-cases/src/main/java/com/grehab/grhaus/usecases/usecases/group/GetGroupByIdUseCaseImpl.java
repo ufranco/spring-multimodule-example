@@ -21,6 +21,8 @@ public class GetGroupByIdUseCaseImpl implements GetGroupByIdUseCase {
 
   @Override
   public GroupOutCommand getGroupById(String id) {
-    return null;
+    return repository.findById(id)
+        .map(mapper::mapGroupEntityToGroupOutCommand)
+        .orElse(null);
   }
 }
